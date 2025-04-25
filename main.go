@@ -1,17 +1,14 @@
 package main
 
 import (
-	"fmt"
-	"net/http"
+	"portfolio_backend/src/routes"
+	"portfolio_backend/src/server"
 )
 
 func main() {
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, "Hello, World! Your Go app is running.")
-	})
-
-	fmt.Println("Server starting on port 8080...")
-	if err := http.ListenAndServe(":8080", nil); err != nil {
-		fmt.Printf("Server failed: %v\n", err)
-	}
+	routes.Router()
+	err := server.Server()
+	if err != nil {
+    panic(err)
+  }
 }
