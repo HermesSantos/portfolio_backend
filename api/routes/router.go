@@ -1,18 +1,25 @@
 package routes
 
 import (
-	"fmt"
+	"log"
 	"net/http"
+
+	"github.com/labstack/echo/v4"
 )
 
 func Router () {
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, "Hello, World! Your Go app is running.")
+	e := echo.New()
+
+	e.GET("/", func(c echo.Context) error {
+		return c.String(http.StatusOK, "Hello, World!")
 	})
-	http.HandleFunc("/get-user-data", func(w http.ResponseWriter, r *http.Request) {
-		if r.Method != http.MethodGet {
-			http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
-      return
-		}
+
+	e.POST("/get-user-data", func(c echo.Context) error {
+		id := c.FormValue("id")
+		return c.String(http.StatusOK, "User data for ID: "+id)
 	})
+
+	if err := e.Start(":8080"); err != http.ErrServerClosed {
+		log.Fatal(err)
+  }
 }
