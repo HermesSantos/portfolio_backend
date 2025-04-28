@@ -1,8 +1,8 @@
 package main
 
 import (
-	"portfolio_backend/src/routes"
-	"portfolio_backend/src/server"
+	"portfolio_backend/api/routes"
+	"portfolio_backend/api/server"
 )
 
 func main() {
