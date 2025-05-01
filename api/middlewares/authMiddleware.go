@@ -2,6 +2,7 @@ package middlewares
 
 import (
 	"crypto/subtle"
+
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 )
@@ -15,5 +16,3 @@ func BasicAuthMiddleware() echo.MiddlewareFunc {
 		return false, nil
 	})
 }
-
-func AuthWithJWT(){}
