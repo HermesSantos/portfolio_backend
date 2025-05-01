@@ -14,7 +14,7 @@ func Router () {
 		return c.String(http.StatusOK, "Hello, World!")
 	})
 
-	e.POST("/get-user-data", func(c echo.Context) error {
+	e.GET("/get-user-data", func(c echo.Context) error {
 		id := c.FormValue("id")
 		return c.String(http.StatusOK, "User data for ID: "+id)
 	})
