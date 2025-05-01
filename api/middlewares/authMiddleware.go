@@ -15,3 +15,5 @@ func BasicAuthMiddleware() echo.MiddlewareFunc {
 		return false, nil
 	})
 }
+
+func AuthWithJWT(){}

@@ -15,8 +15,10 @@ func Router () {
 	admin := e.Group("/admin")
 	publicAdmin := e.Group("/admin")
 
+	// applying middlewares
 	admin.Use(middlewares.BasicAuthMiddleware())
 
+	// routes
 	publicAdmin.GET("/login", admin_handlers.AdminLogin())
 	admin.GET("/", admin_handlers.AdminDash())
 
