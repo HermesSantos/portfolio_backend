@@ -3,6 +3,7 @@ package admin_handlers
 import (
 	"net/http"
 	"os"
+	"portfolio_backend/api/entities"
 	"time"
 
 	"github.com/dgrijalva/jwt-go"
@@ -11,13 +12,28 @@ import (
 
 var (
 	JWT_TOKEN_SECRET = os.Getenv("JWT_TOKEN_SECRET")
+	database         = []entities.User{}
+	admin            = entities.NewUser("hermes", "123123", 20)
+)
+
+type (
+	AdminLoginRequest struct {
+		Username string `json:"email"`
+		Password string `json:"password"`
+	}
 )
 
 func AdminLogin() echo.HandlerFunc {
 	return func(c echo.Context) error {
+		admin := AdminLoginRequest{}
+		if err := c.Bind(admin); err != nil {
+			return err
+		}
+
 		return c.String(http.StatusOK, "Logged in")
 	}
 }
+
 func AuthWithJWT() (string, error) {
 	secret := os.Getenv(JWT_TOKEN_SECRET)
 	claims := jwt.MapClaims{

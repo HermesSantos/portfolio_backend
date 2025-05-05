@@ -3,12 +3,13 @@ package routes
 import (
 	"log"
 	"net/http"
-	"portfolio_backend/api/handlers/adminHandlers"
+	admin_handlers "portfolio_backend/api/handlers/adminHandlers"
 	"portfolio_backend/api/middlewares"
+
 	"github.com/labstack/echo/v4"
 )
 
-func Router () {
+func Router() {
 	e := echo.New()
 
 	// route groups
@@ -19,7 +20,7 @@ func Router () {
 	admin.Use(middlewares.BasicAuthMiddleware())
 
 	// routes
-	publicAdmin.GET("/login", admin_handlers.AdminLogin())
+	publicAdmin.POST("/login", admin_handlers.AdminLogin())
 	admin.GET("/", admin_handlers.AdminDash())
 
 	if err := e.Start(":8080"); err != http.ErrServerClosed {
