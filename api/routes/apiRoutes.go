@@ -9,7 +9,7 @@ import (
 func InitiateRoutes (e *echo.Echo) {
 	// route groups
 	admin := e.Group("/admin")
-	publicAdmin := e.Group("/admin")
+	publicAdmin := e.Group("/public")
 
 	// applying middlewares
 	admin.Use(middlewares.BasicAuthMiddleware())
