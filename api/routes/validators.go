@@ -20,3 +20,7 @@ func (cv *RequestValidator) Validate(i interface{}) error {
   }
   return nil
 }
+
+func AddValidators(e *echo.Echo) {
+  e.Validator = &RequestValidator{validator: validator.New()}
+}

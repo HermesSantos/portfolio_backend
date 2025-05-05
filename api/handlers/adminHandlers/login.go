@@ -10,10 +10,10 @@ import (
 func AdminLogin() echo.HandlerFunc {
 	return func(c echo.Context) error {
 
-		var admin entities.User
+		var admin entities.UserDTO
 
 		if err := c.Bind(&admin); err != nil {
-			return c.String(http.StatusBadRequest, "bad request")
+			return err
 		}
 
 		if err := c.Validate(&admin); err != nil {

@@ -2,8 +2,12 @@ package entities
 
 type (
 	User struct {
+		Email     string
+		Age      int
+		Password string
+	}
+	UserDTO struct {
 		Email     string `json:"email" validate:"required"`
-		Age      int    `json:"age"`
 		Password string `json:"password" validate:"required"`
 	}
 )
