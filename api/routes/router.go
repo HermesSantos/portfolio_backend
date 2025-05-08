@@ -13,7 +13,7 @@ func Router() {
 	InitiateRoutes(e)
 	AddValidators(e)
 
-	if err := e.Start(":8080"); err != http.ErrServerClosed {
+	if err := e.Start(":8182"); err != http.ErrServerClosed {
 		log.Fatal(err)
 	}
 }
