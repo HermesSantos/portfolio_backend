@@ -7,20 +7,16 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
-func AdminLogin() echo.HandlerFunc {
-	return func(c echo.Context) error {
+func AdminLogin(c echo.Context) error {
+	var admin entities.UserDTO
 
-		var admin entities.UserDTO
-
-		if err := c.Bind(&admin); err != nil {
-			return err
-		}
-
-		if err := c.Validate(&admin); err != nil {
-			return c.String(http.StatusBadRequest, "bad request")
-		}
-
-		return c.String(http.StatusOK, "Logged in")
+	if err := c.Bind(&admin); err != nil {
+		return err
 	}
-}
 
+	if err := c.Validate(&admin); err != nil {
+		return c.String(http.StatusBadRequest, "bad request")
+	}
+
+	return c.String(http.StatusOK, "Logged in")
+}

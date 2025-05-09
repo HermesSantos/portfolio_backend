@@ -16,6 +16,6 @@ func InitiateRoutes(e *echo.Echo) {
 	admin.Use(middlewares.BasicAuthMiddleware())
 
 	// routes
-	publicAdmin.POST("/login", admin_handlers.AdminLogin())
-	admin.GET("/", admin_handlers.AdminDash())
+	publicAdmin.POST("/login", admin_handlers.AdminLogin)
+	admin.GET("/", admin_handlers.AdminDash)
 }
